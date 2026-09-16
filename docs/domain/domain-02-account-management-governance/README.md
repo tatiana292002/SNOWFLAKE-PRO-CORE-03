@@ -1,19 +1,73 @@
-# Domain 2: Account Management and Governance
+# Domain 2 — Account Management and Data Governance
 
-## Descripción General
-Este dominio abarca la administración de cuentas, gestión de usuarios, roles, seguridad, costos y gobierno del dato en Snowflake.
+## Scope
 
-## Temas Clave
-- **Control de Acceso Basado en Roles (RBAC)**:
-  - Jerarquía de roles del sistema (`ACCOUNTADMIN`, `SECURITYADMIN`, `USERADMIN`, `SYSADMIN`, `PUBLIC`).
-  - Asignación de privilegios y creación de roles personalizados.
-- **Seguridad y Redes**:
-  - Políticas de red (Network Policies / IP Whitelisting).
-  - Autenticación multifactor (MFA), SSO y Federated Authentication (SAML 2.0).
-- **Gobierno del Dato (Data Governance)**:
-  - Enmascaramiento dinámico de datos (Dynamic Data Masking).
-  - Políticas de acceso a nivel de fila (Row Access Policies).
-  - Etiquetas de objetos (Object Tagging) y seguimiento de linaje de datos.
-- **Gestión de Cuentas y Costos**:
-  - Esquema `ACCOUNT_USAGE` vs `INFORMATION_SCHEMA`.
-  - Resource Monitors y control de consumo de créditos.
+Domain 2 representa el **20%** del examen SnowPro Core COF-C03 según la guía fuente.
+
+Este directorio separa los conceptos de administración de cuentas, RBAC/DAC, autenticación, gobernanza, seguridad, calidad y control de costos en archivos pequeños y autónomos.
+
+## Files
+
+### Access control
+- `roles.md`
+- `privileges.md`
+- `role-hierarchy.md`
+- `rbac.md`
+- `dac.md`
+- `ownership.md`
+- `managed-access.md`
+- `future-grants.md`
+- `database-roles.md`
+- `secondary-roles.md`
+
+### Account and authentication
+- `account-identifiers.md`
+- `authentication.md`
+- `network-policies.md`
+
+### Data governance
+- `masking.md`
+- `row-access-policies.md`
+- `tagging.md`
+- `privacy-policies.md`
+- `trust-center.md`
+- `alerts.md`
+- `notifications.md`
+- `data-lineage.md`
+- `data-metric-functions.md`
+
+### Cost and usage
+- `resource-monitors.md`
+- `budgets.md`
+- `account-usage.md`
+
+## Exam map
+
+| Scenario | Concept |
+|---|---|
+| Qué puede hacer un rol | RBAC / privileges |
+| Quién controla un objeto | DAC / ownership |
+| SELECT pero no puede consultar | Revisar USAGE en DB, schema y warehouse |
+| Crear usuarios o roles | USERADMIN |
+| Conceder permisos ampliamente | SECURITYADMIN / MANAGE GRANTS |
+| Crear warehouses/bases | SYSADMIN |
+| Roles personalizados | Deben colgar de SYSADMIN |
+| Permisos automáticos para objetos futuros | Future grants |
+| Varios roles activos en una sesión | Secondary roles |
+| Permisos granulares dentro de una DB | Database roles |
+| Acceso restringido por IP | Network policies |
+| Ocultar columnas sensibles | Dynamic Data Masking |
+| Filtrar filas | Row Access Policy |
+| Aplicar masking por clasificación/tag | Tag-based masking |
+| Clasificar objetos/columnas | Object tagging |
+| Revisar postura de seguridad | Trust Center |
+| Avisar cuando ocurre una condición | Alert + Notification |
+| Saber de dónde vino un dato | Data lineage |
+| Vigilar nulos/duplicados/frescura | Data Metric Functions |
+| Controlar créditos de warehouses | Resource Monitor |
+| Controlar costos de compute + storage + serverless | Budgets |
+| Historial de uso de toda la cuenta | ACCOUNT_USAGE |
+
+## Source
+
+Basado en `Guia_SnowPro_COF-C03_Actualizada.pdf`, actualizada según la guía al 8 de julio de 2026. No se añaden aquí detalles que no estén respaldados por la fuente.
